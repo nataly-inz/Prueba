@@ -16,7 +16,9 @@
                 <tr>
                     <th>Tarea</th>
                     <th>Descripcion</th>
+                    <th>Fecha</th>
                     <th>Acciones</th>
+                    <th>Completado</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,9 +27,12 @@
                     <tr>
                         <td>@item.Tarea</td>
                         <td>@item.Descripcion</td>
+                        <td>@item.Fecha.ToShortDateString()</td>
                         <td>
                             <a class="btn btn-warning" asp-controller="Tareas" asp-action="Modificar" asp-route-id="@item.Id">Modificar</a>
+      
                             <a class="btn btn-danger" asp-controller="Tareas" asp-route-id="@item.Id" asp-action="Borrar">Borrar</a>
+                            <td> <input type="checkbox"   onchange="location.href='@Url.Action("Completar","Tareas", new { id = item.Id })'"  @(item.Estatus ? "checked" : "") /></td>
                         </td>
                     </tr>
                 }

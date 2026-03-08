@@ -20,7 +20,7 @@ namespace prueba21.web.Controllers
 
         public IActionResult Index()
         {
-            var Tareas = _dataContext.Tareas.ToList();
+            var Tareas = _dataContext.Tareas.Where(x => x.Estatus == false).ToList();
             return View(Tareas);
         }
 
@@ -54,11 +54,14 @@ namespace prueba21.web.Controllers
          var tarea = _dataContext.Tareas.Where(x => x.Id == newObj.Id).FirstOrDefault();
          tarea.Tarea = newObj.Tarea;
          tarea.Descripcion = newObj.Descripcion;
+         tarea.Fecha = newObj.Fecha;
+
             _dataContext.Tareas.Update(tarea);
             _dataContext.SaveChanges();
             return RedirectToAction("Index");
 
         }
+
 
         
         [HttpGet]
@@ -70,5 +73,18 @@ namespace prueba21.web.Controllers
             _dataContext.SaveChanges();
             return RedirectToAction("Index");
         }
-}
+
+        [HttpGet]
+        public IActionResult Completar(int id)
+        {
+            var tarea = _dataContext.Tareas.Find(id);
+
+            tarea.Estatus = true;
+
+            _dataContext.Tareas.Update(tarea);
+            _dataContext.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+    }
 }

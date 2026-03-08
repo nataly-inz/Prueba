@@ -13,5 +13,7 @@ public class TareaEntity
     [StringLength(200), Required]public string Descripcion { get; set; }
 
     [Required]public bool Estatus { get; set; }
-}
+    [Required] public DateTime Fecha { get; set; }
+
+    }
 }
