@@ -1,0 +1,31 @@
+﻿@model prueba21.web.Models.TareaEntity
+
+<div class="row">
+    <div class="col-12">
+        <h2>Nueva Tarea</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <form method="post" asp-controller="Tareas" asp-action="Modificar">
+
+            <input type="hidden" asp-for="@Model.Id" />
+            <div class="mb-3">
+                <label class="form-label">Tarea</label>
+                <input type="text" class="form-control" asp-for="Tarea" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Descripcion</label>
+                <input type="text" class="form-control" asp-for="Descripcion" />
+            </div>
+
+            <div>
+                <a class="btn btn-secondary" asp-controller="Tareas" asp-action="Index">Salir</a>
+                <input class="btn btn-success" type="submit" value="Guardar" />
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+﻿@model List<prueba21.web.Models.TareaEntity>
+
+<div class="row">
+    <div class="col-6">
+        <h2>Lista de tareas</h2>
+    </div>
+    <div class="col-6 text-end">
+        <a class="btn btn-primary" asp-controller="Tareas" asp-action="Nuevo">Nuevo</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Tarea</th>
+                    <th>Descripcion</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Tarea</td>
+                        <td>@item.Descripcion</td>
+                        <td>
+                            <a class="btn btn-warning" asp-controller="Tareas" asp-action="Modificar" asp-route-id="@item.Id">Modificar</a>
+                            <a class="btn btn-danger" asp-controller="Tareas" asp-route-id="@item.Id" asp-action="Borrar">Borrar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+      
